@@ -3,6 +3,7 @@ from tensorflow.keras.models import load_model
 import numpy as np
 import mediapipe as mp
 import json
+import os
 
 # Initialize MediaPipe hands
 mp_hands = mp.solutions.hands
@@ -10,10 +11,10 @@ hands = mp_hands.Hands(static_image_mode=False, max_num_hands=2, min_detection_c
 mp_draw = mp.solutions.drawing_utils
 
 # Load the pre-trained model
-model = load_model("/Users/arinpramanick/Desktop/SIH-Project/Project/ISL_Predict.h5")  # Load the model using Keras directly
+model = load_model(os.path.abspath("ISL_Predict_new.h5"))  # Load the model using Keras directly
 
 # Load class labels from the JSON file
-with open("/Users/arinpramanick/Desktop/SIH-Project/Project/class_indices_letter.json", "r") as f:
+with open(os.path.abspath("class_indices_letter.json"), "r") as f:
     labels_dict = json.load(f)
 
 # Ensure labels are in the right order (assuming indices are in ascending order)
